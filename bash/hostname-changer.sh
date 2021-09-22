@@ -28,5 +28,5 @@ echo "The current hostname is: $oldname"
 echo "Please enter your student number:"
 read studentnum
 newname="pc$studentnum"
-grep -q "$newname" /etc/hosts ||  sudo sed -i "s/$oldname/$newname/" /etc/hosts ; echo "The hostname has been changed in the /etc/hosts file" 
-grep -q "$newname" /etc/hostname || hostnamectl set-hostname $newname ; echo "The hostname has been changed, please reboot your computer make sure the name has taken effect."
+grep -q "$newname" /etc/hosts ||  { sudo sed -i "s/$oldname/$newname/" /etc/hosts ; echo "The hostname has been changed in the /etc/hosts file"; }
+grep -q "$newname" /etc/hostname || { hostnamectl set-hostname $newname ; echo "The hostname has been changed, please reboot your computer make sure the name has taken effect.";  }
